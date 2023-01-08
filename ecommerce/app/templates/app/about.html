@@ -1,0 +1,56 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}About{% endblock title %}
+
+{% block banner-slider %}
+<div id="carouselExample" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'app/images/banner/b1.jpg' %}" class="d-block w-100" alt="banner">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'app/images/banner/b2.jpg' %}" class="d-block w-100" alt="banner">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'app/images/banner/b3.jpg' %}" class="d-block w-100" alt="banner">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'app/images/banner/b4.jpg' %}" class="d-block w-100" alt="banner">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+{% endblock banner-slider %}
+
+{% block main-content %}
+<div class="container">
+    <br>
+    <h2 class="text-center">About Us</h2>
+    <br>
+    <div class="row-container">
+        <p class="fs-4 text-center">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse gravida dignissim eleifend. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum faucibus tristique justo sed mattis. Suspendisse nec varius nunc. Donec vitae mi leo. Curabitur volutpat accumsan eros eu convallis. Sed auctor lorem a leo volutpat, eleifend semper lectus interdum. Phasellus mollis nisi finibus turpis vestibulum bibendum.
+            Nullam ut convallis nisl. Maecenas vel sollicitudin odio. In aliquam, ante et ultrices sollicitudin, lorem diam hendrerit leo, sit amet aliquet ex quam vel ante. Proin sed odio vel est dapibus efficitur. Phasellus lorem augue, interdum et convallis et, euismod eget sem. Etiam rutrum velit ullamcorper nulla sodales posuere sed a risus. Vivamus facilisis commodo luctus. Sed scelerisque, massa sit amet congue facilisis, sem odio scelerisque dolor, ac rhoncus massa sem ac metus. Integer ultrices venenatis nibh, sed ornare tellus congue vitae. Mauris venenatis mauris neque, ultrices cursus erat luctus ut. Vivamus commodo ut sapien a ornare. Nunc eu felis sit amet sem accumsan interdum eget eget enim. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi elementum eros justo, fringilla euismod urna aliquam ut.
+        </p>
+    </div>
+    <br><br>
+    <h2 class="text-center">Missions</h2>
+    <br>
+    <div class="row-container">
+        <p class="fs-4 text-center">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse gravida dignissim eleifend. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum faucibus tristique justo sed mattis. Suspendisse nec varius nunc. Donec vitae mi leo. Curabitur volutpat accumsan eros eu convallis. Sed auctor lorem a leo volutpat, eleifend semper lectus interdum. Phasellus mollis nisi finibus turpis vestibulum bibendum.
+            Nullam ut convallis nisl. Maecenas vel sollicitudin odio. In aliquam, ante et ultrices sollicitudin, lorem diam hendrerit leo, sit amet aliquet ex quam vel ante. Proin sed odio vel est dapibus efficitur. Phasellus lorem augue, interdum et convallis et, euismod eget sem. Etiam rutrum velit ullamcorper nulla sodales posuere sed a risus. Vivamus facilisis commodo luctus. Sed scelerisque, massa sit amet congue facilisis, sem odio scelerisque dolor, ac rhoncus massa sem ac metus. Integer ultrices venenatis nibh, sed ornare tellus congue vitae. Mauris venenatis mauris neque, ultrices cursus erat luctus ut. Vivamus commodo ut sapien a ornare. Nunc eu felis sit amet sem accumsan interdum eget eget enim. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi elementum eros justo, fringilla euismod urna aliquam ut.
+        </p>
+    </div>
+</div>
+<br><br>
+{% endblock main-content %}
+
+
