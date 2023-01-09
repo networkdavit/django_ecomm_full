@@ -1,5 +1,5 @@
 from django import forms 
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField, PasswordResetForm, PasswordChangeForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField, PasswordResetForm, PasswordChangeForm, SetPasswordForm
 from django.contrib.auth.models import User
 from .models import Customer
 
@@ -30,8 +30,7 @@ class MyPasswordChangeForm(PasswordChangeForm):
     new_password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput(attrs={'autocomplete':'current-password', 'class': 'form-control'}))
 
 
-class MyPasswordResetForm(PasswordResetForm):
-    pass
+
 
 class CustomerProfileForm(forms.ModelForm):
     class Meta:
@@ -45,3 +44,11 @@ class CustomerProfileForm(forms.ModelForm):
             'state': forms.Select(attrs={'class': 'form-control'}),
             'zipcode': forms.NumberInput(attrs={'class': 'form-control'}),
         }
+
+class MyPasswordResetForm(PasswordResetForm):
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
+
+
+class MySetPasswordForm(SetPasswordForm):
+    new_password1 = forms.CharField(label='New Password', widget=forms.PasswordInput(attrs={'autocomplete':'current-password', 'class': 'form-control'}))
+    new_password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput(attrs={'autocomplete':'current-password', 'class': 'form-control'}))
