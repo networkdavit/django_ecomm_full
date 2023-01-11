@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_view
@@ -6,6 +6,7 @@ from .forms import LoginForm, MyPasswordResetForm, MyPasswordChangeForm, MySetPa
 from . import views
 
 urlpatterns = [
+    # re_path(r'.*', views.any_view),
     #home
     path("",views.home),
     path("about",views.about, name="about"),
@@ -22,8 +23,11 @@ urlpatterns = [
     #cart
     path("add-to-cart/",views.add_to_cart, name="add-to-cart"),
     path("cart/",views.show_cart, name="showcart"),
-    path("checkout/",views.show_cart, name="checkout"),
+    path("checkout/",views.Checkout.as_view(), name="checkout"),
     path("pluscart/",views.plus_cart),
+    path("minuscart/",views.minus_cart),
+    path("removecart/",views.remove_cart),
+    path("payment-complete/",views.payment_complete, name="payment-complete"),
 
     #auth
     path("registration/",views.CustomerRegistrationView.as_view(), name="customerregistration"),
