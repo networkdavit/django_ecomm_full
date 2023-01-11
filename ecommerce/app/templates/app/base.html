@@ -51,16 +51,16 @@
                 <a class="nav-link text-white"  href="{% url 'contact' %}">Contact Us</a>
                 </li>
             </ul>
-            <form class="d-flex" role="search">
+            {% comment %} <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            </form> {% endcomment %}
             </div>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item dropdown mx-2">
                     <a class="nav-link dropdown-toggle text-white" href="#"
                     id="profileDropdown" rol"button" data-bs-toggle="dropdown"
-                    aria-expanded="false">networkdavit
+                    aria-expanded="false">{{request.user}}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="profileDropdown">
                         <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>

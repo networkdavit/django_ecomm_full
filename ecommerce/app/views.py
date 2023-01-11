@@ -28,34 +28,30 @@ from django.db.models import Q
 #     print("HERE", item_count)
 
 def cart_item_count(request):
-    user = request.user
-    add=Customer.objects.filter(user=user)
-    cart_items=Cart.objects.filter(user=user)
-    total_item_quantity = Cart.objects.values_list('quantity')
-    item_count = 0
-    print(total_item_quantity, "total_item_quantity")
-    for item in total_item_quantity:
-        for quantity in item:
-            item_count += quantity
-    print("HERE", item_count)
-    return item_count
+    #get total count of items
+    pass
 
 def home(request):
-    item_count = cart_item_count(request)
+    item_count = 0
+    if request.user.is_authenticated:
+        item_count = len(Cart.objects.filter(user=request.user))
     return render(request, "app/home.html", locals())
 
 def about(request):
-    item_count = cart_item_count(request)
+    if request.user.is_authenticated:
+        item_count = len(Cart.objects.filter(user=request.user))
     return render(request, "app/about.html", locals())
 
 def contact(request):
-    item_count = cart_item_count(request)
+    if request.user.is_authenticated:
+        item_count = len(Cart.objects.filter(user=request.user))
 
     return render(request, "app/contact.html", locals())
 
 class CategoryView(View):
     def get(self, request, val):
-        item_count = cart_item_count(request)
+        if request.user.is_authenticated:
+            item_count = len(Cart.objects.filter(user=request.user))
 
         product = Product.objects.filter(category=val)
         title = Product.objects.filter(category=val).values('title')
@@ -63,7 +59,8 @@ class CategoryView(View):
 
 class CategoryTitle(View):
     def get(self, request, val):
-        item_count = cart_item_count(request)
+        if request.user.is_authenticated:
+            item_count = len(Cart.objects.filter(user=request.user))
 
         product = Product.objects.filter(title=val)
         title = Product.objects.filter(category=product[0].category).values('title')
@@ -71,14 +68,16 @@ class CategoryTitle(View):
 
 class ProductDetail(View):
     def get(self, request, pk):
-        item_count = cart_item_count(request)
+        if request.user.is_authenticated:
+            item_count = len(Cart.objects.filter(user=request.user))
 
         product = Product.objects.get(pk=pk)
         return render(request, "app/productdetail.html",locals())
 
 class CustomerRegistrationView(View):
     def get(self, request):
-        item_count = cart_item_count(request)
+        if request.user.is_authenticated:
+            item_count = len(Cart.objects.filter(user=request.user))
 
         form = CustomerRegistrationForm()
         return render(request, 'app/customerregistration.html', locals())
@@ -94,7 +93,8 @@ class CustomerRegistrationView(View):
 
 class ProfileView(View):
     def get(self, request):
-        item_count = cart_item_count(request)
+        if request.user.is_authenticated:
+            item_count = len(Cart.objects.filter(user=request.user))
 
         form = CustomerProfileForm()
         return render(request, "app/profile.html", locals())
@@ -118,13 +118,15 @@ class ProfileView(View):
         return render(request, "app/profile.html", locals())
 
 def address(request):
-    item_count = cart_item_count(request)
+    if request.user.is_authenticated:
+        item_count = len(Cart.objects.filter(user=request.user))
     add = Customer.objects.filter(user=request.user)
     return render(request, "app/address.html", locals())
 
 class UpdateAddress(View):
     def get(self, request, pk):
-        item_count = cart_item_count(request)
+        if request.user.is_authenticated:
+            item_count = len(Cart.objects.filter(user=request.user))
 
         add = Customer.objects.get(pk=pk)
         form = CustomerProfileForm(instance=add) 
@@ -148,7 +150,8 @@ class UpdateAddress(View):
 
 
 def add_to_cart(request):
-    item_count = cart_item_count(request)
+    if request.user.is_authenticated:
+        item_count = len(Cart.objects.filter(user=request.user))
     user = request.user
     product_id = request.GET.get('prod_id')
     product = Product.objects.get(id=product_id)
@@ -156,7 +159,8 @@ def add_to_cart(request):
     return redirect("/cart")
 
 def show_cart(request):
-    item_count = cart_item_count(request)
+    if request.user.is_authenticated:
+        item_count = len(Cart.objects.filter(user=request.user))
     user = request.user
     cart = Cart.objects.filter(user=user)
     amount = 0 
@@ -168,7 +172,8 @@ def show_cart(request):
     return render(request, "app/addtocart.html", locals())
 
 def plus_cart(request):
-    item_count = cart_item_count(request)
+    if request.user.is_authenticated:
+        item_count = len(Cart.objects.filter(user=request.user))
     if request.method == "GET":
         prod_id = request.GET["prod_id"]
         print("?Asdfsadf")
@@ -190,7 +195,8 @@ def plus_cart(request):
         return JsonResponse(data)
 
 def minus_cart(request):
-    item_count = cart_item_count(request)
+    if request.user.is_authenticated:
+        item_count = len(Cart.objects.filter(user=request.user))
     if request.method == "GET":
         prod_id = request.GET["prod_id"]
         print("?Asdfsadf")
@@ -212,7 +218,8 @@ def minus_cart(request):
         return JsonResponse(data)
 
 def remove_cart(request):
-    item_count = cart_item_count(request)
+    if request.user.is_authenticated:
+        item_count = len(Cart.objects.filter(user=request.user))
     if request.method == "GET":
         prod_id = request.GET["prod_id"]
         c = Cart.objects.get(Q(product=prod_id) & Q(user=request.user))        
@@ -236,7 +243,8 @@ def payment_complete(request):
 
 class Checkout(View):
     def get(self, request):
-        item_count = cart_item_count(request)
+        if request.user.is_authenticated:
+            item_count = len(Cart.objects.filter(user=request.user))
         user = request.user
         add=Customer.objects.filter(user=user)
         cart_items=Cart.objects.filter(user=user)
