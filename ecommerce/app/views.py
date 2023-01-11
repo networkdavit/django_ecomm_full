@@ -31,6 +31,7 @@ def cart_item_count(request):
     #get total count of items
     pass
 
+
 def home(request):
     item_count = 0
     if request.user.is_authenticated:
@@ -122,6 +123,21 @@ def address(request):
         item_count = len(Cart.objects.filter(user=request.user))
     add = Customer.objects.filter(user=request.user)
     return render(request, "app/address.html", locals())
+
+#protected route
+def orders(request):
+    if request.user.is_authenticated:
+        testcount = [{"Milk": 2},{"Milkshake":5},{"Curd": 1}]
+        numlol = 1
+        user = request.user
+        cart = Cart.objects.filter(user=user)
+        print(cart, 123412341)
+        for item in cart:
+            print(item.quantity)
+        
+        return render(request, "app/orders.html", locals())
+    else:
+        return redirect("/")
 
 class UpdateAddress(View):
     def get(self, request, pk):

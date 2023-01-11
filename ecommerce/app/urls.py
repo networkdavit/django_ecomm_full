@@ -9,14 +9,15 @@ urlpatterns = [
     # re_path(r'.*', views.any_view),
     #home
     path("",views.home),
-    path("about",views.about, name="about"),
-    path("contact",views.contact, name="contact"),
+    path("about/",views.about, name="about"),
+    path("contact/",views.contact, name="contact"),
     path("category/<slug:val>",views.CategoryView.as_view(), name="category"),
     path("category-title/<val>",views.CategoryTitle.as_view(), name="category-title"),
     path("product-detail/<int:pk>",views.ProductDetail.as_view(), name="product-detail"),
 
     #user
     path("profile/",views.ProfileView.as_view(), name="profile"),
+    path("orders/", views.orders, name="orders"),
     path("address/",views.address, name="address"),
     path("updateAddress/<int:pk>",views.UpdateAddress.as_view(), name="updateAddress"),
 

@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "django_ecomm",
+            "database": "${workspaceFolder:django_ecomm_full}/ecommerce/db.sqlite3"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
