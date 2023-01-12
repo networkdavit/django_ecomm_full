@@ -67,6 +67,12 @@ class Cart(models.Model):
         return self.quantity * self.product.discounted_price
 
 
+class Contact(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    
 # class Payment(models.Model):
 #     user  = models.ForeignKey(User, on_delete=models.CASCADE)
 #     amount = models.FloatField()

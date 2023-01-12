@@ -1,7 +1,7 @@
 from django import forms 
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField, PasswordResetForm, PasswordChangeForm, SetPasswordForm
 from django.contrib.auth.models import User
-from .models import Customer
+from .models import Customer, Contact
 
 class CustomerRegistrationForm(UserCreationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'autofocus': 'True',
@@ -52,3 +52,13 @@ class MyPasswordResetForm(PasswordResetForm):
 class MySetPasswordForm(SetPasswordForm):
     new_password1 = forms.CharField(label='New Password', widget=forms.PasswordInput(attrs={'autocomplete':'current-password', 'class': 'form-control'}))
     new_password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput(attrs={'autocomplete':'current-password', 'class': 'form-control'}))
+
+class ContactForm(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={'autofocus': 'True',
+    'class': 'form-control'}), required=True)
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}), required=True)
+    message = forms.CharField(widget=forms.Textarea(attrs={'autofocus': 'True',
+    'class': 'form-control'}) ,required=True)
+    class Meta:
+        model = Contact
+        fields = ['name', 'email', 'message']

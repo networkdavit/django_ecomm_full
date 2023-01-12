@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
 from django.views import View
-from . models import Product, Customer, Cart
-from . forms import CustomerRegistrationForm, CustomerProfileForm
+from . models import Product, Customer, Cart, Contact
+from . forms import CustomerRegistrationForm, CustomerProfileForm, ContactForm
 from django.contrib import messages
 from django.db.models import Q
 
@@ -47,7 +47,21 @@ def contact(request):
     if request.user.is_authenticated:
         item_count = len(Cart.objects.filter(user=request.user))
 
-    return render(request, "app/contact.html", locals())
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # you can do any other logic here like sending email to customer support
+            return redirect("thankyou")
+    else:
+        form = ContactForm()
+    return render(request, 'app/contact.html', locals())
+    # return render(request, "app/contact.html", locals())
+
+def thankyou(request):
+    if request.user.is_authenticated:
+        item_count = len(Cart.objects.filter(user=request.user))
+    return render(request, "app/thanks.html", locals())
 
 class CategoryView(View):
     def get(self, request, val):
@@ -280,3 +294,14 @@ class Checkout(View):
         totalamount = famount + 2500
         print("HERE", item_count)
         return render(request, "app/checkout.html", locals())
+
+def contact_view(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # you can do any other logic here like sending email to customer support
+            return render(request, 'contact_form/thanks.html')
+    else:
+        form = ContactForm()
+    return render(request, 'contact_form/form.html', {'form': form})

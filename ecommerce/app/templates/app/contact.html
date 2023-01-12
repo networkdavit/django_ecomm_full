@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}About{% endblock title %}
 
-{% block banner-slider %}
+{% comment %} {% block banner-slider %}
 <div id="carouselExample" class="carousel slide">
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -27,16 +27,49 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-{% endblock banner-slider %}
+{% endblock banner-slider %} {% endcomment %}
 
 {% block main-content %}
+{% comment %} <div>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+</form>
+</div> {% endcomment %}
+<div class="container">
+  <div class="row my-3">
+      <div class="col-sm-6 offset-sm-3">
+        <form action="" method="post" novalidate class="shadow p-5">
+          {% csrf_token %}
+          {% for fm in form %}
+          <p >{{fm.label_tag}}</p>
+              <div style="text-align:center;">
+                {{fm}}
+              </div> 
+              <small class="text-danger">{{fm.errors|striptags}}</small>
+              <br>
+          {% endfor %}
+          
+
+          {% if form.non_field_errors %}
+              {% for error in form.non_field_errors  %}
+                  <p class="alert alert-danger my-3">{{error}}</p>
+              {% endfor %}
+          {% endif %}
+          <input type="submit" class="btn btn-primary mt-4" value="Submit">
+        </form>
+      </div>
+    </div>
+  </div>
 <div class="container mt-3">
     <br>
     <h2 class="text-center">Contact Us</h2>
+
     <div class="row-container">
-        <p class="fs-4 text-center">Address: </p>
-        <p class="fs-4 text-center">Contact: </p>
-        <p class="fs-4 text-center">Email: </p>
+        {% comment %} <p class="fs-4 text-center">Address: </p>
+        <p class="fs-4 text-center">Contact: </p> {% endcomment %}
+        <p class="fs-4 text-center">Email: networkdavit@gmail.com</p>
     </div>
 </div>
 <br><br>
