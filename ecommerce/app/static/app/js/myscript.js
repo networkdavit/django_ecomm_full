@@ -24,8 +24,8 @@
 
 $('.plus-cart').click(function(){
     console.log(123)
-    var id=$(this).attr("pid").toString();
-    var eml=this.parentNode.children[2] 
+    const id=$(this).attr("pid").toString();
+    const eml=this.parentNode.children[2] 
     console.log(1234)
     $.ajax({
         type:"GET",
@@ -45,8 +45,8 @@ $('.plus-cart').click(function(){
 $('.minus-cart').click(function(){
     console.log(123)
 
-    var id=$(this).attr("pid").toString();
-    var eml=this.parentNode.children[2] 
+    const id=$(this).attr("pid").toString();
+    const eml=this.parentNode.children[2] 
     $.ajax({
         type:"GET",
         url:"/minuscart",
@@ -65,8 +65,8 @@ $('.minus-cart').click(function(){
 $('.remove-cart').click(function(){
     console.log(123)
 
-    var id=$(this).attr("pid").toString();
-    var eml=this
+    const id=$(this).attr("pid").toString();
+    const eml=this
     $.ajax({
         type:"GET",
         url:"/removecart",
@@ -83,7 +83,7 @@ $('.remove-cart').click(function(){
 
 
 // $('.plus-wishlist').click(function(){
-//     var id=$(this).attr("pid").toString();
+//     const id=$(this).attr("pid").toString();
 //     $.ajax({
 //         type:"GET",
 //         url:"/pluswishlist",
@@ -99,7 +99,7 @@ $('.remove-cart').click(function(){
 
 
 // $('.minus-wishlist').click(function(){
-//     var id=$(this).attr("pid").toString();
+//     const id=$(this).attr("pid").toString();
 //     $.ajax({
 //         type:"GET",
 //         url:"/minuswishlist",

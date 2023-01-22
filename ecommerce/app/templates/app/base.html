@@ -25,12 +25,15 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-            {% if request.user.is_authenticated %}
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                {% if request.user.is_authenticated %}
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Products</a>
+                </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Products
+                    Categories
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{% url 'category' 'ML' %}">Milk</a></li>
@@ -96,7 +99,7 @@
     <br>
     <br>
     <footer class="container-fluid fixed-bottom bg-primary text-center p-2 mt-5">
-        Copyright : 2023 || Develop by : networkdavit
+        Copyright : 2023 || Developed by : networkdavit
     </footer>
 
     

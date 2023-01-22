@@ -14,7 +14,7 @@ urlpatterns = [
     path("thankyou/",views.thankyou, name="thankyou"),
     path("category/<slug:val>",views.CategoryView.as_view(), name="category"),
     path("category-title/<val>",views.CategoryTitle.as_view(), name="category-title"),
-    path("product-detail/<int:pk>",views.ProductDetail.as_view(), name="product-detail"),
+    path("category/<path:val>/product-detail/<int:pk>",views.ProductDetail.as_view(), name="product-detail"),
 
     #user
     path("profile/",views.ProfileView.as_view(), name="profile"),

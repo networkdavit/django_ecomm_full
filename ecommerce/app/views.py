@@ -82,11 +82,26 @@ class CategoryTitle(View):
         return render(request, "app/category.html",locals())
 
 class ProductDetail(View):
-    def get(self, request, pk):
+    def get(self, request,val, pk):
+        CATEGORY_CHOICES=(
+            ("CR", "Curd"),
+            ("ML", "Milk"),
+            ("LS", "Lassi"),
+            ("MS", "Milkshake"),
+            ("PN", "Paneer"),
+            ("GH", "Ghee"),
+            ("CZ", "Cheese"),
+            ("IC", "Ice-Creams"),
+        )
         if request.user.is_authenticated:
             item_count = len(Cart.objects.filter(user=request.user))
 
         product = Product.objects.get(pk=pk)
+
+        category_title = ""
+        for code, name in CATEGORY_CHOICES:
+            if code == val:
+                category_title = name
         return render(request, "app/productdetail.html",locals())
 
 class CustomerRegistrationView(View):
@@ -192,7 +207,17 @@ def show_cart(request):
     if request.user.is_authenticated:
         item_count = len(Cart.objects.filter(user=request.user))
     user = request.user
+    ##demo test to show what is in reality
     cart = Cart.objects.filter(user=user)
+    current_items = []
+    for item in cart:
+        current_items.append(item.id)
+        print(item.id)
+        if(item.id):
+            print("ok")
+    print(current_items)
+    if(22 not in current_items):
+        print(1)
     amount = 0 
     for p in cart:
         value = p.quantity * p.product.discounted_price
@@ -269,6 +294,9 @@ def remove_cart(request):
 
 def payment_complete(request):
     user = request.user
+    print(user.id, "id")
+    # MyModel.objects.filter(id=5).delete()
+    Cart.objects.filter(user_id=user.id).delete()
     return render(request, "app/payment_complete.html", locals())
 
 class Checkout(View):
@@ -279,14 +307,15 @@ class Checkout(View):
         add=Customer.objects.filter(user=user)
         cart_items=Cart.objects.filter(user=user)
         total_item_quantity = Cart.objects.values_list('quantity')
-        item_count = 0
-        print(total_item_quantity, "total_item_quantity")
-        for item in total_item_quantity:
-            for quantity in item:
-                item_count += quantity
+        # item_count = 0
+        # print(total_item_quantity, "total_item_quantity")
+        # for item in total_item_quantity:
+        #     for quantity in item:
+        #         item_count += quantity
         famount = 0
+        # print("irtem cout", total_item_quantity)
         
-        print("HERE", cart_items)
+        # print("HERE", cart_items)
 
         for p in cart_items:
             value = p.quantity * p.product.discounted_price
