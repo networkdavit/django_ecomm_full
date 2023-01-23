@@ -27,6 +27,17 @@ from django.db.models import Q
 #     totalamount = famount + 2500
 #     print("HERE", item_count)
 
+CATEGORY_CHOICES=(
+    ("CR", "Curd"),
+    ("ML", "Milk"),
+    ("LS", "Lassi"),
+    ("MS", "Milkshake"),
+    ("PN", "Paneer"),
+    ("GH", "Ghee"),
+    ("CZ", "Cheese"),
+    ("IC", "Ice-Creams"),
+)
+        
 def cart_item_count(request):
     #get total count of items
     pass
@@ -63,6 +74,16 @@ def thankyou(request):
         item_count = len(Cart.objects.filter(user=request.user))
     return render(request, "app/thanks.html", locals())
 
+
+class ProductsView(View):
+    def get(self, request):
+        if request.user.is_authenticated:
+            item_count = len(Cart.objects.filter(user=request.user))
+        products = Product.objects.all()
+            
+        return render(request, "app/products.html",locals())
+
+
 class CategoryView(View):
     def get(self, request, val):
         if request.user.is_authenticated:
@@ -70,6 +91,11 @@ class CategoryView(View):
 
         product = Product.objects.filter(category=val)
         title = Product.objects.filter(category=val).values('title')
+        category_title = ""
+        for code, name in CATEGORY_CHOICES:
+            if code == val:
+                category_title = name    
+                   
         return render(request, "app/category.html",locals())
 
 class CategoryTitle(View):
@@ -83,16 +109,6 @@ class CategoryTitle(View):
 
 class ProductDetail(View):
     def get(self, request,val, pk):
-        CATEGORY_CHOICES=(
-            ("CR", "Curd"),
-            ("ML", "Milk"),
-            ("LS", "Lassi"),
-            ("MS", "Milkshake"),
-            ("PN", "Paneer"),
-            ("GH", "Ghee"),
-            ("CZ", "Cheese"),
-            ("IC", "Ice-Creams"),
-        )
         if request.user.is_authenticated:
             item_count = len(Cart.objects.filter(user=request.user))
 

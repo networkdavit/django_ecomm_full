@@ -1,4 +1,4 @@
-from django.urls import path, re_path
+from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_view
@@ -12,6 +12,7 @@ urlpatterns = [
     path("about/",views.about, name="about"),
     path("contact/",views.contact, name="contact"),
     path("thankyou/",views.thankyou, name="thankyou"),
+    path("products/",views.ProductsView.as_view(), name="products"),
     path("category/<slug:val>",views.CategoryView.as_view(), name="category"),
     path("category-title/<val>",views.CategoryTitle.as_view(), name="category-title"),
     path("category/<path:val>/product-detail/<int:pk>",views.ProductDetail.as_view(), name="product-detail"),

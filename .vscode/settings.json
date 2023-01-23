@@ -3,8 +3,8 @@
         {
             "previewLimit": 50,
             "driver": "SQLite",
-            "name": "django_ecom",
-            "database": "${workspaceFolder:django_ecomm_full}/ecommerce/db.sqlite3"
+            "name": "ecomm",
+            "database": "${workspaceFolder:django_ecomm_full}/db.sqlite3"
         }
     ]
 }
