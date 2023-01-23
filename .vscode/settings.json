@@ -1,0 +1,10 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "django_ecom",
+            "database": "${workspaceFolder:django_ecomm_full}/ecommerce/db.sqlite3"
+        }
+    ]
+}
